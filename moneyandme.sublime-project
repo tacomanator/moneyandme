@@ -1,0 +1,15 @@
+{
+	"folders":
+	[
+		{
+			"folder_exclude_patterns":
+			[
+				".bundle",
+				"build",
+				".sass_cache",
+				".sass-cache"
+			],
+			"path": "."
+		}
+	]
+}
