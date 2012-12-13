@@ -12,7 +12,15 @@ html
 
     == stylesheet_link_tag "bootstrap-inc", "site"
 
+    css:
+      body {
+        padding-top: 30px;
+      }
+
     body
-      == yield
+      .container-fluid
+        .row-fluid
+          .span12#app-container
+            == yield
 
     == javascript_include_tag  "all"

@@ -10,11 +10,12 @@
 #= require lib/moment.js
 #= require lib/moment-range.js
 #= require config
-#= require models
-#= require collections
-#= reqiure views
 #= require_tree .
 
 jQuery ->
   console.log('ready... now write me some javascript')
 
+
+  model = new App.Models.Model
+  modelView = new App.Views.ModelView(model:model)
+  $('#app-container').html(modelView.el)
