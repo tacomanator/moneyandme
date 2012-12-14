@@ -1,13 +1,28 @@
 
-
 script type="text/template" id="model-template"
   .row-fluid
     section.span4
-      form
+      form#variables
         fieldset
           legend Financial Variables
           input type="text" data-value="model.annualIncome" placeholder="Annual Income"
           br 
           input type="text" data-value="model.monthlyExpenses" placeholder="Monthly Expenses"
+        fieldset
+          legend Results
+          .row-fluid
+            .span1 &nbsp;
+            .span5 Monthly Income
+            .span6 data-text="model:monthlyIncome < .annualIncome"
+          .row-fluid
+            .span1 &minus;
+            .span5 Expenses
+            .span6 data-text="model.monthlyExpenses"
+          .row-fluid
+            .span1 
+              ' =
+            .span5 Potential Savings
+            .span6 data-text="model:monthlyPotentialSavings < .annualIncome .monthlyExpenses"
+
     section.span8
       svg

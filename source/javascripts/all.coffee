@@ -1,7 +1,6 @@
 #= require jquery
 #= require underscore
 #= require backbone
-#= require bootstrap-modal
 #= require lib/backbone.localStorage.js
 #= require lib/backbone.collectionsubset.js
 #= require lib/backbone.mutators.js
@@ -13,9 +12,11 @@
 #= require_tree .
 
 jQuery ->
-  console.log('ready... now write me some javascript')
 
+  model = new App.Models.Model(annualIncome: 100000, monthlyExpenses: 4000)
 
-  model = new App.Models.Model
   modelView = new App.Views.ModelView(model:model)
+
   $('#app-container').html(modelView.el)
+
+  window.model = model
