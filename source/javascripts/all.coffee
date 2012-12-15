@@ -8,6 +8,7 @@
 #= require lib/d3.v2.js
 #= require lib/moment.js
 #= require lib/moment-range.js
+#= require lib/html5slider.js
 #= require config
 #= require_tree .
 

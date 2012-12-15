@@ -5,11 +5,14 @@ script type="text/template" id="model-template"
       form#variables
         fieldset
           legend Financial Variables
-          input type="text" data-value="model.annualIncome" placeholder="Annual Income"
-          br 
-          input type="text" data-value="model.monthlyExpenses" placeholder="Monthly Expenses"
-          br 
-          input type="text" data-value="model.percentSaved" placeholder="Percent Saved"
+          label for="annualIncome" Annual Income
+          input type="text" data-value="model.annualIncome" placeholder="Annual Income" id="annualIncome"
+          label for="monthlyExpenses" Monthly Expenses 
+          input type="text" data-value="model.monthlyExpenses" placeholder="Monthly Expenses" id="monthlyExpenses"
+          label for="monthlyExpenses" Percent Saved
+          input type="text" data-value="model.percentSaved" placeholder="Percent Saved" id="percentSaved"
+          br
+          input type="range" data-value="model.percentSaved" min="0" max="1" step=".01"
         fieldset
           legend Results
           .row-fluid
