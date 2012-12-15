@@ -14,3 +14,6 @@ class App.Models.Model extends Backbone.Model
 
   fv: (r, n, payment) ->
     Math.round(payment * ( Math.pow(1 + r, n) - 1 ) / r)
+
+  totalSaved: ->
+    @fv(@monthlyRateOfReturn(), @get('yearsToSave') * 12, @monthlyActualSavings())

@@ -14,6 +14,12 @@ rivets.configure(
       obj.set(keypath, value)
 )
 
+rivets.formatters.money = (value) ->
+  accounting.formatMoney value, "$", 0
+
+rivets.formatters.percent = (value) ->
+  "#{value * 100}%"
+
 window.App = {}
 window.App.Models = {}
 window.App.Collections = {}

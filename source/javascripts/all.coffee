@@ -9,6 +9,7 @@
 #= require lib/moment.js
 #= require lib/moment-range.js
 #= require lib/html5slider.js
+#= require lib/accounting.js
 #= require config
 #= require_tree .
 

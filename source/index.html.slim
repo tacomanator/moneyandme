@@ -38,24 +38,29 @@ script type="text/template" id="model-template"
           .row-fluid
             .span7 Monthly Income
             .span1 &nbsp;
-            .span4 data-text="model:monthlyIncome < .annualIncome"
+            .span4 data-text="model:monthlyIncome < .annualIncome | money"
           .row-fluid
             .span7 Monthly Expenses
             .span1 &minus;
-            .span4 data-text="model.monthlyExpenses"
+            .span4 data-text="model.monthlyExpenses | money"
           .row-fluid
             .span7 Maximum Monthly Savings
             .span1 
               ' =
-            strong.span4 data-text="model:monthlyMaximumSavings < .annualIncome .monthlyExpenses"
+            strong.span4 data-text="model:monthlyMaximumSavings < .annualIncome .monthlyExpenses | money"
           .row-fluid
             .span7 Percent Saved
             .span1 &times;
-            .span4 data-text="model.percentSaved"
+            .span4 data-text="model.percentSaved | percent"
           .row-fluid
             .span7 Actual Monthly Savings
             .span1 
               ' =
-            strong.span4 data-text="model:monthlyActualSavings < .annualIncome .monthlyExpenses .percentSaved"
+            strong.span4 data-text="model:monthlyActualSavings < .annualIncome .monthlyExpenses .percentSaved | money"
+          .row-fluid
+            .span7 Total Saved
+            .span1 
+              ' =
+            strong.span4 data-text="model:totalSaved < .annualIncome .monthlyExpenses .percentSaved .yearsToSave .annualRateOfReturn | money"
     section.span8#chart-container
       svg
