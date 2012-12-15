@@ -14,7 +14,12 @@
 
 jQuery ->
 
-  model = new App.Models.Model(annualIncome: 100000, monthlyExpenses: 4000, percentSaved: 0.5)
+  model = new App.Models.Model
+    annualIncome: 90000
+    monthlyExpenses: 5000
+    percentSaved: 0.5
+    yearsToSave: 20
+    monthlyRate: 0.0066
 
   modelView = new App.Views.ModelView(model: model)
 

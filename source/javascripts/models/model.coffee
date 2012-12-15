@@ -6,4 +6,5 @@ class App.Models.Model extends Backbone.Model
 
   monthlyActualSavings: -> Math.round(@monthlyMaximumSavings() * @get('percentSaved'))
 
-  fv: (rate, periods, payment) -> payment * (1 + rate) * ( ( Math.pow(periods, 1 + rate) - 1 ) / rate)
+  fv: (r, n, payment) ->
+    Math.round(payment * ( Math.pow(1 + r, n) - 1 ) / r)

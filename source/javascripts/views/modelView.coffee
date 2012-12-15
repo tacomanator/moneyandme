@@ -4,8 +4,6 @@ class App.Views.ModelView extends Backbone.View
 
   initialize: ->
     @render()
-    @rate = 0.6434
-    @years = 10
 
   render: ->
 
@@ -19,25 +17,31 @@ class App.Views.ModelView extends Backbone.View
 
       w = chartContainer.width()
       h = $(window).height() - chartContainer.offset().top * 2
-      maxY = @model.fv(@rate, @years*12, @model.monthlyMaximumSavings())
 
       @chart = new App.Models.Chart width: w, height: h
-      @resetChart()
+      @setupChart()
 
       @chartView = new App.Views.ChartView model: @chart, el: chartContainer.find('svg')
       chartContainer.append(@chartView.el)
 
-      @model.on "change:annualIncome change:monthlyExpenses", => @resetChart()
-      @model.on "change:percentSaved", => @chart.set('data', @chartData())
+      @model.on "change", => @setupChart()
 
-  chartData: ->
+  setupChart: ->
 
-    monthlySavings = @model.monthlyActualSavings()
-    [1..(12*@years)].map (month) =>
-      @model.fv(@rate, month, monthlySavings)
+    years = @model.get 'yearsToSave'
+    totalMonths = years * 12
+    rate = @model.get 'monthlyRate'
 
-  resetChart: ->
+    monthlyMaxiumumSavings = @model.monthlyMaximumSavings()
+    monthlyActualSavings = @model.monthlyActualSavings()
 
-    @chart.set('maxY', @model.fv(@rate, @years*12, @model.monthlyMaximumSavings()))
-    @chart.set('data', @chartData())
+    maximumFutureValue = @model.fv(rate, totalMonths, monthlyMaxiumumSavings)
 
+    @chart.set 'maxY', maximumFutureValue
+
+    data = [1..totalMonths].map (month) =>
+      @model.fv(rate, month, monthlyActualSavings)
+
+    @chart.set 'data', data
+
+    @
