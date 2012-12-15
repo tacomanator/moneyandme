@@ -13,7 +13,34 @@ class App.Views.ChartView extends Backbone.View
 
     @render()
 
-  initialRender: ->
+    @model.on "change", => @transition()
+
+
+  setScales: ->
+
+    height = @model.get('height')
+    maxY = @model.get('maxY')
+
+    @scales =
+
+      y: d3.scale.linear()
+        .domain([0, maxY])
+        .range([0, height])
+
+      yAxis: d3.scale.linear()
+        .domain([0, maxY])
+        .range([height, 0])
+
+    @yAxis = d3.svg.axis()
+      .scale(@scales.yAxis)
+      .orient("right")
+      .ticks(3)
+
+    @
+
+  render: ->
+
+    @setScales()
 
     yAxisAreaWidth = 100
     width = @model.get('width')
@@ -30,36 +57,6 @@ class App.Views.ChartView extends Backbone.View
       .attr("height", height)
       .call(@yAxis)
 
-    @
-
-  setScales: ->
-
-    height = @model.get('height')
-    data = @model.get('data')
-
-    @scales =
-
-      y: d3.scale.linear()
-        .domain([0, @model.get('maxY')])
-        .range([0, @model.get('height')])
-
-      yAxis: d3.scale.linear()
-        .domain([0, @model.get('maxY')])
-        .range([height, 0])
-
-    @yAxis = d3.svg.axis()
-      .scale(@scales.yAxis)
-      .orient("right")
-      .ticks(3)
-
-    @
-
-  render: ->
-
-    @setScales()
-
-    @initialRender() unless @svg
-
     @line = d3.svg.line()
       .x(@lineX)
       .y(@lineY)
@@ -68,7 +65,7 @@ class App.Views.ChartView extends Backbone.View
         .attr("class", "line")
         .attr("d", @line(@model.get('data')))
 
-    @model.on "change", => @transition()
+    @
 
   transition: ->
 
