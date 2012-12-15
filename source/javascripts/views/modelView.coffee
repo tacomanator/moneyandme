@@ -9,22 +9,24 @@ class App.Views.ModelView extends Backbone.View
 
     $(@el).html(@template(@model.toJSON()))
 
-    chartContainer = $(@el).find('#chart-container')
-
     _.defer =>
 
       rivets.bind($('body'), {model: @model})
 
-      w = chartContainer.width()
-      h = $(window).height() - chartContainer.offset().top * 2
+      if Modernizr.inlinesvg
 
-      @chart = new App.Models.Chart width: w, height: h
-      @setupChart()
+        chartContainer = $(@el).find('#chart-container')
 
-      @chartView = new App.Views.ChartView model: @chart, el: chartContainer.find('svg')
-      chartContainer.append(@chartView.el)
+        w = chartContainer.width()
+        h = $(window).height() - chartContainer.offset().top * 2
 
-      @model.on "change", => @setupChart()
+        @chart = new App.Models.Chart width: w, height: h
+        @setupChart()
+
+        @chartView = new App.Views.ChartView model: @chart, el: chartContainer.find('svg')
+        chartContainer.append(@chartView.el)
+
+        @model.on "change", => @setupChart()
 
   setupChart: ->
 

@@ -4,6 +4,7 @@
 #= require lib/rivets.js
 #= require lib/d3.v2.js
 #= require lib/accounting.js
+#= require lib/modernizr.custom.js
 #= require config
 #= require_tree .
 
