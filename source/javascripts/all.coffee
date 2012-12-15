@@ -19,7 +19,7 @@ jQuery ->
     monthlyExpenses: 5000
     percentSaved: 0.5
     yearsToSave: 20
-    monthlyRate: 0.0066
+    annualRateOfReturn: .08
 
   modelView = new App.Views.ModelView(model: model)
 

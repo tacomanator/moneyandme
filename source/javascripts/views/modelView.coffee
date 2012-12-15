@@ -30,7 +30,7 @@ class App.Views.ModelView extends Backbone.View
 
     years = @model.get 'yearsToSave'
     totalMonths = years * 12
-    rate = @model.get 'monthlyRate'
+    rate = @model.monthlyRateOfReturn()
 
     monthlyMaxiumumSavings = @model.monthlyMaximumSavings()
     monthlyActualSavings = @model.monthlyActualSavings()

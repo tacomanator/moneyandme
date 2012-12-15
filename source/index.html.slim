@@ -7,22 +7,32 @@ script type="text/template" id="model-template"
           legend Financial Variables
           .row-fluid
             .span6
-              label for="annualIncome" Annual Income
-              input.input-medium type="text" data-value="model.annualIncome" placeholder="Annual Income" id="annualIncome"
+              label for="annualIncome"
+                | Annual Income 
+                small (after tax)
+              input.input-medium type="text" data-value="model.annualIncome" id="annualIncome"
             .span6
               label for="monthlyExpenses" Monthly Expenses 
-              input.input-medium type="text" data-value="model.monthlyExpenses" placeholder="Monthly Expenses" id="monthlyExpenses"
+              input.input-medium type="text" data-value="model.monthlyExpenses" id="monthlyExpenses"
           .row-fluid
             .span6
               label for="monthlyExpenses" Percent Saved
-              input.input-medium  type="text" data-value="model.percentSaved" placeholder="Percent Saved" id="percentSaved"
+              input.input-medium  type="text" data-value="model.percentSaved" id="percentSaved"
               br
               input type="range" data-value="model.percentSaved" min="0" max="1" step=".01"
             .span6
               label for="monthlyExpenses" Years to Save
-              input.input-medium type="text" data-value="model.yearsToSave" placeholder="Percent Saved" id="yearsToSave"
+              input.input-medium type="text" data-value="model.yearsToSave" id="yearsToSave"
               br
               input type="range" data-value="model.yearsToSave" min="0" max="40" step="5"
+          .row-fluid
+            .span6
+              label for="annualRateOfReturn" Annaul Rate of Return
+              input.input-medium  type="text" data-value="model.annualRateOfReturn" id="annualRateOfReturn"
+              br
+              input type="range" data-value="model.annualRateOfReturn" min="0" max=".20" step=".01"
+            .span6
+
         fieldset
           legend Results
           .row-fluid
@@ -30,7 +40,7 @@ script type="text/template" id="model-template"
             .span1 &nbsp;
             .span4 data-text="model:monthlyIncome < .annualIncome"
           .row-fluid
-            .span7 Expenses
+            .span7 Monthly Expenses
             .span1 &minus;
             .span4 data-text="model.monthlyExpenses"
           .row-fluid
