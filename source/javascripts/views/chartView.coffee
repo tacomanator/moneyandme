@@ -66,15 +66,15 @@ class App.Views.ChartView extends Backbone.View
 
     @initialRender() unless @svg
 
-    @svg.selectAll("rect")
-        .data(@model.get('data'))
-      .enter()
-        .append("rect")
-        .attr("width", @barW)
-        .attr("height", @barH)
-        .attr("x", @barX)
-        .attr("y", @barY)
-        .attr("fill", "black")
+    # @svg.selectAll("rect")
+    #     .data(@model.get('data'))
+    #   .enter()
+    #     .append("rect")
+    #     .attr("width", @barW)
+    #     .attr("height", @barH)
+    #     .attr("x", @barX)
+    #     .attr("y", @barY)
+    #     .attr("fill", "black")
 
     @line = d3.svg.line()
       .x(@lineX)
@@ -90,12 +90,12 @@ class App.Views.ChartView extends Backbone.View
 
     @setScales()
 
-    @svg.selectAll("rect")
-        .data(@model.get('data'))
-      .transition()
-        .duration(500)
-        .attr("height", @barH)
-        .attr("y", @barY)
+    # @svg.selectAll("rect")
+    #     .data(@model.get('data'))
+    #   .transition()
+    #     .duration(500)
+    #     .attr("height", @barH)
+    #     .attr("y", @barY)
 
     @svg.select(".axis")
       .transition()
