@@ -44,19 +44,14 @@ class App.Views.ChartView extends Backbone.View
 
     @setScales()
 
-    yAxisAreaWidth = 100
-    width = @model.get('width')
-    height = @model.get('height')
-    data = @model.get('data')
-
     @svg = d3.select(@el)
-      .attr("width", width)
-      .attr("height", height)
+      .attr("width", @width)
+      .attr("height", @height)
      
     @svg.append("g")
       .attr("class", "axis")
-      .attr("transform", "translate(#{width - yAxisAreaWidth}, 0)")
-      .attr("height", height)
+      .attr("transform", "translate(#{@width - @yAxisAreaWidth}, 0)")
+      .attr("height", @height)
       .call(@yAxis)
 
     @line = d3.svg.line()
@@ -65,7 +60,7 @@ class App.Views.ChartView extends Backbone.View
 
     @svg.append("path")
         .attr("class", "line")
-        .attr("d", @line(data))
+        .attr("d", @line(@data))
 
     @
 
