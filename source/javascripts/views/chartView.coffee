@@ -74,7 +74,6 @@ class App.Views.ChartView extends Backbone.View
     @setScales()
 
     @svg.selectAll("path").transition()
-      .duration(500)
       .attr("d", @line(@model.get('data')))
 
     @svg.select(".axis")
