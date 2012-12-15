@@ -3,7 +3,6 @@
 #= require backbone
 #= require lib/rivets.js
 #= require lib/d3.v2.js
-#= require lib/html5slider.js
 #= require lib/accounting.js
 #= require config
 #= require_tree .
