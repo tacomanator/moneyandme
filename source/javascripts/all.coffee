@@ -15,7 +15,7 @@ jQuery ->
 
   model = new App.Models.Model(annualIncome: 100000, monthlyExpenses: 4000, percentSaved: 0.5)
 
-  modelView = new App.Views.ModelView(model:model)
+  modelView = new App.Views.ModelView(model: model)
 
   $('#app-container').html(modelView.el)
 

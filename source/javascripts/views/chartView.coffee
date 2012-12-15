@@ -5,14 +5,8 @@ class App.Views.ChartView extends Backbone.View
     width = @model.get('width')
     height = @model.get('height')
     data = @model.get('data')
-    barPadding = 1
     yAxisAreaWidth = 100
     dataWidth = width - yAxisAreaWidth
-
-    @barX = (d,i) => i * (dataWidth / data.length)
-    @barY = (d,i) => height - @scales.y(d)
-    @barW = () => dataWidth / data.length - barPadding
-    @barH = (d,i) => @scales.y(d)
 
     @lineX = (d,i) => i * (dataWidth / data.length)
     @lineY = (d) => height - @scales.y(d)
@@ -46,11 +40,11 @@ class App.Views.ChartView extends Backbone.View
     @scales =
 
       y: d3.scale.linear()
-        .domain([0, d3.max data])
+        .domain([0, @model.get('maxY')])
         .range([0, @model.get('height')])
 
       yAxis: d3.scale.linear()
-        .domain([0, d3.max(data)])
+        .domain([0, @model.get('maxY')])
         .range([height, 0])
 
     @yAxis = d3.svg.axis()
@@ -66,16 +60,6 @@ class App.Views.ChartView extends Backbone.View
 
     @initialRender() unless @svg
 
-    # @svg.selectAll("rect")
-    #     .data(@model.get('data'))
-    #   .enter()
-    #     .append("rect")
-    #     .attr("width", @barW)
-    #     .attr("height", @barH)
-    #     .attr("x", @barX)
-    #     .attr("y", @barY)
-    #     .attr("fill", "black")
-
     @line = d3.svg.line()
       .x(@lineX)
       .y(@lineY)
@@ -90,12 +74,9 @@ class App.Views.ChartView extends Backbone.View
 
     @setScales()
 
-    # @svg.selectAll("rect")
-    #     .data(@model.get('data'))
-    #   .transition()
-    #     .duration(500)
-    #     .attr("height", @barH)
-    #     .attr("y", @barY)
+    @svg.selectAll("path").transition()
+      .duration(500)
+      .attr("d", @line(@model.get('data')))
 
     @svg.select(".axis")
       .transition()

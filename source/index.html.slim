@@ -13,26 +13,26 @@ script type="text/template" id="model-template"
         fieldset
           legend Results
           .row-fluid
+            .span7 Monthly Income
             .span1 &nbsp;
-            .span5 Monthly Income
-            .span6 data-text="model:monthlyIncome < .annualIncome"
+            .span4 data-text="model:monthlyIncome < .annualIncome"
           .row-fluid
+            .span7 Expenses
             .span1 &minus;
-            .span5 Expenses
-            .span6 data-text="model.monthlyExpenses"
+            .span4 data-text="model.monthlyExpenses"
           .row-fluid
+            .span7 Maximum Monthly Savings
             .span1 
               ' =
-            .span5 Potential Monthly Savings
-            .span6 data-text="model:monthlyPotentialSavings < .annualIncome .monthlyExpenses"
+            strong.span4 data-text="model:monthlyMaximumSavings < .annualIncome .monthlyExpenses"
           .row-fluid
+            .span7 Percent Saved
             .span1 &times;
-            .span5 Percent Saved
-            .span6 data-text="model:percentSaved"
+            .span4 data-text="model:percentSaved"
           .row-fluid
+            .span7 Actual Monthly Savings
             .span1 
               ' =
-            .span5 Actual Monthly Savings
-            .span6 data-text="model:monthlyActualSavings < .annualIncome .monthlyExpenses .percentSaved"
+            strong.span4 data-text="model:monthlyActualSavings < .annualIncome .monthlyExpenses .percentSaved"
     section.span8#chart-container
       svg
