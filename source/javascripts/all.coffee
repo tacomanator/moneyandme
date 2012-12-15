@@ -1,13 +1,8 @@
 #= require jquery
 #= require underscore
 #= require backbone
-#= require lib/backbone.localStorage.js
-#= require lib/backbone.collectionsubset.js
-#= require lib/backbone.mutators.js
 #= require lib/rivets.js
 #= require lib/d3.v2.js
-#= require lib/moment.js
-#= require lib/moment-range.js
 #= require lib/html5slider.js
 #= require lib/accounting.js
 #= require config
