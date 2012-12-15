@@ -8,6 +8,8 @@ script type="text/template" id="model-template"
           input type="text" data-value="model.annualIncome" placeholder="Annual Income"
           br 
           input type="text" data-value="model.monthlyExpenses" placeholder="Monthly Expenses"
+          br 
+          input type="text" data-value="model.percentSaved" placeholder="Percent Saved"
         fieldset
           legend Results
           .row-fluid
@@ -21,8 +23,16 @@ script type="text/template" id="model-template"
           .row-fluid
             .span1 
               ' =
-            .span5 Potential Savings
+            .span5 Potential Monthly Savings
             .span6 data-text="model:monthlyPotentialSavings < .annualIncome .monthlyExpenses"
-
+          .row-fluid
+            .span1 &times;
+            .span5 Percent Saved
+            .span6 data-text="model:percentSaved"
+          .row-fluid
+            .span1 
+              ' =
+            .span5 Actual Monthly Savings
+            .span6 data-text="model:monthlyActualSavings < .annualIncome .monthlyExpenses .percentSaved"
     section.span8#chart-container
       svg

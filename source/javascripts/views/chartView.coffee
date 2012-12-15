@@ -15,7 +15,7 @@ class App.Views.ChartView extends Backbone.View
     @barH = (d,i) => @scales.y(d)
 
     @lineX = (d,i) => i * (dataWidth / data.length)
-    @lineY = (d) => @scales.y(d)
+    @lineY = (d) => height - @scales.y(d)
 
     @render()
 
@@ -76,13 +76,13 @@ class App.Views.ChartView extends Backbone.View
         .attr("y", @barY)
         .attr("fill", "black")
 
-    # @line = d3.svg.line()
-    #   .x(@lineX)
-    #   .y(@lineY)
+    @line = d3.svg.line()
+      .x(@lineX)
+      .y(@lineY)
 
-    # @svg.append("path")
-    #     .attr("class", "line")
-    #     .attr("d", @line(@model.get('data')))
+    @svg.append("path")
+        .attr("class", "line")
+        .attr("d", @line(@model.get('data')))
 
     @model.on "change", => @transition()
 

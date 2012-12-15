@@ -30,7 +30,7 @@ class App.Views.ModelView extends Backbone.View
 
     years = 10
     rate = 0.6434
-    monthlySavings = @model.monthlyPotentialSavings()
+    monthlySavings = @model.monthlyActualSavings()
     data = [1..(12*years)].map (month) ->
       monthlySavings * (1 + rate) * ( ( Math.pow(month, 1 + rate) - 1 ) / rate)
     @chart.set('data', data)
