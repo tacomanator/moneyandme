@@ -89,23 +89,25 @@ class App.Views.ChartView extends Backbone.View
       .x(@lineX)
       .y(@lineY)
 
-    @svg.append("path")
-        .attr("class", "line")
-        .attr("d", @line(@data))
+    @path = @svg.append("path")
+      .attr("class", "line")
+      .attr("d", @line(@data))
 
     @
 
   transition: ->
 
     @setScales()
-
-    @svg.selectAll("path").transition()
+    
+    @path.transition()
       .attr("d", @line(@model.get('data')))
 
     @svg.select(".x.axis")
       .transition()
+        .ease("linear")
       .call(@xAxis)
 
     @svg.select(".y.axis")
       .transition()
+        .ease("linear")
       .call(@yAxis)
