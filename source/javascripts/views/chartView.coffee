@@ -2,40 +2,41 @@ class App.Views.ChartView extends Backbone.View
 
   initialize: ->
 
-    width = @model.get('width')
-    height = @model.get('height')
-    data = @model.get('data')
-    yAxisAreaWidth = 100
-    dataWidth = width - yAxisAreaWidth
-
-    @lineX = (d,i) => i * (dataWidth / data.length)
-    @lineY = (d) => height - @scales.y(d)
+    @width = @model.get('width')
+    @height = @model.get('height')
+    @yAxisAreaWidth = 100
+    @dataWidth = @width - @yAxisAreaWidth
+    @maxY = @model.get('maxY')
+    @data = @model.get('data')
 
     @render()
 
-    @model.on "change:maxY", => @setScales(); @transition()
-    @model.on "change:data", => @transition()
+    @model.on "change", => @transition()
 
 
   setScales: ->
 
-    height = @model.get('height')
-    maxY = @model.get('maxY')
+    @maxY = @model.get('maxY')
+    @data = @model.get('data')
 
     @scales =
 
       y: d3.scale.linear()
-        .domain([0, maxY])
-        .range([0, height])
+        .domain([0, @maxY])
+        .range([0, @height])
 
       yAxis: d3.scale.linear()
-        .domain([0, maxY])
-        .range([height, 0])
+        .domain([0, @maxY])
+        .range([@height, 0])
 
     @yAxis = d3.svg.axis()
       .scale(@scales.yAxis)
       .orient("right")
       .ticks(3)
+
+
+    @lineX = (d,i) => i * (@dataWidth / @data.length)
+    @lineY = (d) => @height - @scales.y(d)
 
     @
 
@@ -69,6 +70,8 @@ class App.Views.ChartView extends Backbone.View
     @
 
   transition: ->
+
+    @setScales()
 
     @svg.selectAll("path").transition()
       .duration(500)
