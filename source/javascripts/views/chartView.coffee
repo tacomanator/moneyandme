@@ -13,7 +13,8 @@ class App.Views.ChartView extends Backbone.View
 
     @render()
 
-    @model.on "change", => @transition()
+    @model.on "change:maxY", => @setScales(); @transition()
+    @model.on "change:data", => @transition()
 
 
   setScales: ->
@@ -63,13 +64,11 @@ class App.Views.ChartView extends Backbone.View
 
     @svg.append("path")
         .attr("class", "line")
-        .attr("d", @line(@model.get('data')))
+        .attr("d", @line(data))
 
     @
 
   transition: ->
-
-    @setScales()
 
     @svg.selectAll("path").transition()
       .duration(500)
