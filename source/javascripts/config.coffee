@@ -18,7 +18,7 @@ rivets.formatters.money = (value) ->
   accounting.formatMoney value, "$", 0
 
 rivets.formatters.percent = (value) ->
-  "#{value * 100}%"
+  "#{Math.round(value * 100)}%"
 
 window.App = {}
 window.App.Models = {}
