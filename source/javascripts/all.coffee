@@ -1,6 +1,7 @@
 #= require jquery
 #= require underscore
 #= require backbone
+#= require bootstrap-tab
 #= require lib/rivets.js
 #= require lib/d3.v2.js
 #= require lib/accounting.js
@@ -20,5 +21,9 @@ jQuery ->
   modelView = new App.Views.ModelView(model: model)
 
   $('#app-container').html(modelView.el)
+
+  $('#form-selection-tabs a').click (e) ->
+    e.preventDefault()
+    $(@).tab('show')
 
   window.model = model
