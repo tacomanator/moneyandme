@@ -1,74 +1,88 @@
-script type="text/template" id="pre-retirement-form-template"
-  .row-fluid
-    .span6
-      label for="annualIncome"
-        | Annual Income 
-        small (after tax)
-      input.input-medium type="text" data-value="model.annualIncome" id="annualIncome"
-    .span6
-      label for="monthlyExpenses" Monthly Expenses 
-      input.input-medium type="text" data-value="model.monthlyExpenses" id="monthlyExpenses"
-  .row-fluid
-    .span6
-      label for="monthlyExpenses" Percent Saved
-      input.input-medium  type="text" data-value="model.percentSaved" id="percentSaved"
-      br
-      input type="range" data-value="model.percentSaved" min="0" max="1" step=".01"
-    .span6
-      label for="monthlyExpenses" Years to Save
-      input.input-medium type="text" data-value="model.yearsToSave" id="yearsToSave"
-      br
-      input type="range" data-value="model.yearsToSave" min="0" max="40" step="5"
-  .row-fluid
-    .span6
-      label for="annualRateOfReturn" Annaul Rate of Return
-      input.input-medium  type="text" data-value="model.annualRateOfReturn" id="annualRateOfReturn"
-      br
-      input type="range" data-value="model.annualRateOfReturn" min="0" max=".20" step=".01"
-    .span6
 
-script type="text/template" id="post-retirement-form-template"
-  p Todo
-  
 script type="text/template" id="model-template"
+
   .row-fluid
+
     section.span4
       form#variables
-        ul.nav.nav-pills#form-selection-tabs
-          li.active
-            a href="#pre-retirement" data-toggle="tab" Pre-Retirement
-          li
-            a href="#post-retirement" data-toggle="tab" Post-Retirement
-        .tab-content#fields
-
         fieldset
-          legend Results
+          legend Pre-retirement
           .row-fluid
-            .span7 Monthly Income
+            .span6
+              label for="annualIncome"
+                | Annual Income 
+                small (after tax)
+              input.input-medium type="text" data-value="model.annualIncome" id="annualIncome"
+            .span6
+              label for="monthlyExpenses" Monthly Expenses 
+              input.input-medium type="text" data-value="model.monthlyExpenses" id="monthlyExpenses"
+          .row-fluid
+            .span6
+              label for="monthlyExpenses" Percent Saved
+              input.input-medium  type="text" data-value="model.percentSaved" id="percentSaved"
+              br
+              input type="range" data-value="model.percentSaved" min="0" max="1" step=".01"
+            .span6
+              label for="monthlyExpenses" Years to Save
+              input.input-medium type="text" data-value="model.yearsToSave" id="yearsToSave"
+              br
+              input type="range" data-value="model.yearsToSave" min="0" max="40" step="5"
+          .row-fluid
+            .span6
+              label for="annualRateOfReturn" Annaul Rate of Return
+              input.input-medium  type="text" data-value="model.annualRateOfReturn" id="annualRateOfReturn"
+              br
+              input type="range" data-value="model.annualRateOfReturn" min="0" max=".20" step=".01"
+            .span6
+        fieldset
+          legend Post-retirement
+          p Todo
+
+    section.span8
+
+      .navbar
+        .navbar-inner
+          ul.nav
+            li.active
+              a href="#chart" data-toggle="tab" Chart
+            li
+              a href="#data" data-toggle="tab" Data
+            li
+              a href="#summary" data-toggle="tab" Summary
+
+      .tab-content
+
+        #chart.tab-pane.active
+          svg
+
+        #data.tab-pane
+          p Todo
+
+        #summary.tab-pane
+          .row-fluid
+            .span5 Monthly Income
             .span1 &nbsp;
             .span4 data-text="model:monthlyIncome < .annualIncome | money"
           .row-fluid
-            .span7 Monthly Expenses
+            .span5 Monthly Expenses
             .span1 &minus;
             .span4 data-text="model.monthlyExpenses | money"
           .row-fluid
-            .span7 Maximum Monthly Savings
+            .span5 Maximum Monthly Savings
             .span1 
               ' =
             strong.span4 data-text="model:monthlyMaximumSavings < .annualIncome .monthlyExpenses | money"
           .row-fluid
-            .span7 Percent Saved
+            .span5 Percent Saved
             .span1 &times;
             .span4 data-text="model.percentSaved | percent"
           .row-fluid
-            .span7 Actual Monthly Savings
+            .span5 Actual Monthly Savings
             .span1 
               ' =
             strong.span4 data-text="model:monthlyActualSavings < .annualIncome .monthlyExpenses .percentSaved | money"
           .row-fluid
-            .span7 Total Saved
+            .span5 Total Saved
             .span1 
               ' =
             strong.span4 data-text="model:totalSaved < .annualIncome .monthlyExpenses .percentSaved .yearsToSave .annualRateOfReturn | money"
-    section.span8#chart-container
-      svg
