@@ -12,14 +12,11 @@
 jQuery ->
 
   model = new App.Models.Model
-    preRetirement:
-      annualIncome: 90000
-      monthlyExpenses: 5000
-      percentSaved: 0.5
-      yearsToSave: 20
-      annualRateOfReturn: .08
-    postRetirement:
-      annualRateOfReturn: .05
+    annualIncome: 90000
+    monthlyExpenses: 5000
+    percentSaved: 0.5
+    yearsToSave: 20
+    annualRateOfReturn: .08
 
 
   modelView = new App.Views.ModelView(model: model)

@@ -9,6 +9,12 @@ class App.Views.ModelView extends Backbone.View
 
     $(@el).html(@template(@model.toJSON()))
 
+    preRetirementFormView = new App.Views.preRetirementFormView(model: @model)
+    postRetirementFormView = new App.Views.postRetirementFormView(model: @model)
+
+    $(@el).find('#fields').append(preRetirementFormView.el)
+    $(@el).find('#fields').append(postRetirementFormView.el)
+
     _.defer =>
 
       rivets.bind($('body'), {model: @model})
