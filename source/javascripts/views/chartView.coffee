@@ -3,7 +3,7 @@ class App.Views.ChartView extends Backbone.View
   initialize: ->
 
     @width = $(@el).width()
-    @height = $(window).height() - @el.offsetTop * 2
+    @height = $(window).height() - @el.offsetTop - parseInt($('body').css('padding-top'))
 
     @marginLeft = 5
 
