@@ -1,13 +1,16 @@
 #= require jquery
 #= require underscore
-#= require backbone
+#= require lib/backbone/backbone.js
 #= require bootstrap-tab
 #= require lib/rivets.js
 #= require lib/d3.v2.js
 #= require lib/accounting.js
 #= require lib/modernizr.custom.js
+#= require lib/backbone-deep-model/lib/underscore.mixin.deepExtend
+#= require lib/backbone-deep-model/src/deep-model.js
 #= require config
-#= require_tree .
+#= require_tree ./models
+#= require_tree ./views
 
 jQuery ->
 
