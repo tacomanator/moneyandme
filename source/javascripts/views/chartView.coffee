@@ -37,10 +37,10 @@ class App.Views.ChartView extends Backbone.View
     totalMonths = years * 12
     rate = @model.monthlyRateOfReturn()
 
-    monthlyMaxiumumSavings = @model.monthlyMaximumSavings()
+    monthlyMaximumSavings = @model.monthlyMaximumSavings()
     monthlyActualSavings = @model.monthlyActualSavings()
 
-    @maxY =  @model.fv(rate, totalMonths, monthlyMaxiumumSavings)
+    @maxY =  @model.fv(rate, totalMonths, monthlyMaximumSavings)
 
     @data = [1..totalMonths].map (month) =>
       @model.fv(rate, month, monthlyActualSavings)
