@@ -6,5 +6,5 @@ class App.Views.FormView extends Backbone.View
     @render()
 
   render: ->
-
     $(@el).html(@template(@model.toJSON()))
+    @

@@ -6,5 +6,5 @@ class App.Views.SummaryView extends Backbone.View
     @render()
 
   render: ->
-
     $(@el).html(@template(@model.toJSON()))
+    @
