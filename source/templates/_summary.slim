@@ -1,0 +1,27 @@
+.row-fluid
+  .span5 Monthly Income
+  .span1 &nbsp;
+  .span4 data-text="model:monthlyIncome < .annualIncome | money"
+.row-fluid
+  .span5 Monthly Expenses
+  .span1 &minus;
+  .span4 data-text="model.monthlyExpenses | money"
+.row-fluid
+  .span5 Maximum Monthly Savings
+  .span1 
+    ' =
+  strong.span4 data-text="model:monthlyMaximumSavings < .annualIncome .monthlyExpenses | money"
+.row-fluid
+  .span5 Percent Saved
+  .span1 &times;
+  .span4 data-text="model.percentSaved | percent"
+.row-fluid
+  .span5 Actual Monthly Savings
+  .span1 
+    ' =
+  strong.span4 data-text="model:monthlyActualSavings < .annualIncome .monthlyExpenses .percentSaved | money"
+.row-fluid
+  .span5 Total Saved
+  .span1 
+    ' =
+  strong.span4 data-text="model:totalSaved < .annualIncome .monthlyExpenses .percentSaved .yearsToSave .annualRateOfReturn | money"

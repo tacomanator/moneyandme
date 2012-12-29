@@ -20,7 +20,24 @@ html
     body
       .container-fluid
         .row-fluid
-          .span12#app-container
-            == yield
+          section.span4#variables
+          section.span8#tabs
+            .navbar
+              .navbar-inner
+                ul.nav
+                  li.active
+                    a href="#chart" data-toggle="tab" Chart
+                  li
+                    a href="#data" data-toggle="tab" Data
+                  li
+                    a href="#summary" data-toggle="tab" Summary
+            .tab-content
+              .tab-pane.active#chart
+              .tab-pane#data
+              .tab-pane#summary
+
+
+    script type="text/template" id="form-template" == partial "templates/form"
+    script type="text/template" id="summary-template" == partial "templates/summary"
 
     == javascript_include_tag  "all"

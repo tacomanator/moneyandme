@@ -2,8 +2,8 @@ class App.Views.ChartView extends Backbone.View
 
   initialize: ->
 
-    @width = @model.get('width')
-    @height = @model.get('height')
+    @width = $(@el).width()
+    @height = $(window).height() - @el.offsetTop * 2
 
     @marginLeft = 5
 
@@ -13,36 +13,37 @@ class App.Views.ChartView extends Backbone.View
     @xAxisAreaHeight = 30
     @dataHeight = @height - @xAxisAreaHeight
 
-    @maxY = @model.get('maxY')
-
-    @data = @model.get('data')
-
     @svg = d3.select(@el)
+      .append("svg")
       .attr("width", @width)
       .attr("height", @height)
 
     @svg.append("svg:line")
-      .attr("x1", @marginLeft)
-      .attr("y1", 0)
-      .attr("x2", @dataWidth+@marginLeft)
-      .attr("y2", 0)
+      .attr("x1", @marginLeft).attr("y1", 0)
+      .attr("x2", @dataWidth+@marginLeft).attr("y2", 0)
 
     @svg.append("svg:line")
-      .attr("x1", @marginLeft)
-      .attr("y1", 0)
-      .attr("x2", @marginLeft)
-      .attr("y2", @dataHeight)
+      .attr("x1", @marginLeft).attr("y1", 0)
+      .attr("x2", @marginLeft).attr("y2", @dataHeight)
 
     @render()
 
     @model.on "change", => @transition()
 
 
-  setScales: ->
+  setup: ->
 
-    @maxY = @model.get('maxY')
-    @data = @model.get('data')
-    @years = @model.get('yearsToSave')
+    years = @model.get 'yearsToSave'
+    totalMonths = years * 12
+    rate = @model.monthlyRateOfReturn()
+
+    monthlyMaxiumumSavings = @model.monthlyMaximumSavings()
+    monthlyActualSavings = @model.monthlyActualSavings()
+
+    @maxY =  @model.fv(rate, totalMonths, monthlyMaxiumumSavings)
+
+    @data = [1..totalMonths].map (month) =>
+      @model.fv(rate, month, monthlyActualSavings)
 
     @scales =
 
@@ -73,7 +74,7 @@ class App.Views.ChartView extends Backbone.View
 
   render: ->
 
-    @setScales()
+    @setup()
 
     @svg.append("g")
       .attr("class", "x axis")
@@ -97,10 +98,10 @@ class App.Views.ChartView extends Backbone.View
 
   transition: ->
 
-    @setScales()
+    @setup()
     
     @path.transition()
-      .attr("d", @line(@model.get('data')))
+      .attr("d", @line(@data))
 
     @svg.select(".x.axis")
       .transition()
