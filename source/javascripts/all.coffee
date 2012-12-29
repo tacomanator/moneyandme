@@ -19,7 +19,7 @@ jQuery ->
     annualRateOfReturn: .08
 
 
-  modelView = new App.Views.ModelView(model: model)
+  appView = new App.Views.appView(model: model)
 
   $('#app-container').html(modelView.el)
 

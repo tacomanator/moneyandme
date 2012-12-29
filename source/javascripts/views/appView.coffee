@@ -1,4 +1,4 @@
-class App.Views.ModelView extends Backbone.View
+class App.Views.AppView extends Backbone.View
 
   initialize: ->
     @render()
