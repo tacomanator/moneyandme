@@ -6,7 +6,7 @@ class App.Views.ModelView extends Backbone.View
   render: ->
 
     @summaryView = new App.Views.SummaryView model: @model, el: $('#summary')
-    @formView = new App.Views.FormView model: @model, el: $('#variables')
+    @formView = new App.Views.FormView model: @model, el: $('#form')
     @chartView = new App.Views.ChartView model: @model, el: $('#chart')
 
     unless Modernizr.inlinesvg
