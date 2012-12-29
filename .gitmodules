@@ -1,0 +1,3 @@
+[submodule "source/javascripts/lib/backbone-deep-model"]
+	path = source/javascripts/lib/backbone-deep-model
+	url = git://github.com/powmedia/backbone-deep-model.git
