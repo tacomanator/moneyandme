@@ -11,7 +11,7 @@
 
 jQuery ->
 
-  model = new App.Models.Model
+  financialModel = new App.Models.FinancialModel
     annualIncome: 90000
     monthlyExpenses: 5000
     percentSaved: 0.5
@@ -19,12 +19,11 @@ jQuery ->
     annualRateOfReturn: .08
 
 
-  appView = new App.Views.appView(model: model)
+  appView = new App.Views.AppView(model: financialModel)
 
-  $('#app-container').html(modelView.el)
+  $('#app-container').html(appView.el)
 
   $('#form-selection-tabs a').click (e) ->
     e.preventDefault()
     $(@).tab('show')
 
-  window.model = model
