@@ -17,6 +17,7 @@ jQuery ->
     percentSaved: 0.5
     yearsToSave: 20
     annualRateOfReturn: .08
+    retirementNeed: 0.8
 
 
   appView = new App.Views.AppView(model: financialModel)

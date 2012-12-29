@@ -9,8 +9,14 @@ class App.Models.FinancialModel extends Backbone.Model
   monthlyActualSavings: ->
     Math.round(@monthlyMaximumSavings() * @get('percentSaved'))
 
+  monthlyLivingIncome: ->
+    @monthlyIncome() - @monthlyActualSavings()
+
   monthlyRateOfReturn: ->
     Math.round( @get('annualRateOfReturn') / 12 * 10000 ) / 10000
+
+  retirementMonthlyDraw: ->
+    @monthlyLivingIncome() * @get('retirementNeed')
 
   fv: (r, n, payment) ->
     Math.round(payment * ( Math.pow(1 + r, n) - 1 ) / r)
