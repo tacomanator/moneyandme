@@ -23,3 +23,10 @@ class App.Models.FinancialModel extends Backbone.DeepModel
 
   totalSaved: ->
     @fv(@monthlyRateOfReturn(), @get('yearsToSave') * 12, @monthlyActualSavings())
+
+  monthsItWillLast: (monthlyInterestRate, beginningBalance, monthlyWithdrawlAmount) ->
+    i = monthlyInterestRate
+    b = beginningBalance
+    w = monthlyWithdrawlAmount
+    j = 1 + i
+    Math.log(w) / Math.log(j) - Math.log(w - b*i) / Math.log(j)
