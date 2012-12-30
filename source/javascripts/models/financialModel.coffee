@@ -1,4 +1,4 @@
-class App.Models.FinancialModel extends Backbone.Model
+class App.Models.FinancialModel extends Backbone.DeepModel
 
   monthlyIncome: ->
     Math.round(@get('annualIncome') / 12)
