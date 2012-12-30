@@ -16,7 +16,7 @@ class App.Models.FinancialModel extends Backbone.DeepModel
     Math.round( @get('annualRateOfReturn') / 12 * 10000 ) / 10000
 
   retirementMonthlyDraw: ->
-    @monthlyLivingIncome() * @get('retirementNeed')
+    @monthlyLivingIncome() * @get('retirement.need')
 
   fv: (r, n, payment) ->
     Math.round(payment * ( Math.pow(1 + r, n) - 1 ) / r)
